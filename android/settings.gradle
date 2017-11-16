@@ -1,0 +1,3 @@
+rootProject.name = 'rnPermissions'
+
+include ':app'
