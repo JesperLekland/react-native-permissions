@@ -1,11 +1,20 @@
 import React from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, Button, StyleSheet, Text, View } from 'react-native'
 import { Location } from './src'
 
 class LocationExample extends React.PureComponent {
 
     state = {
         isLoading: false,
+    }
+
+    _requestPermission = async () => {
+        try {
+            this.setState({ isLoading: true })
+            await this.props.requestLocationPermission()
+        } finally {
+            this.setState({ isLoading: false })
+        }
     }
 
     render() {
@@ -24,8 +33,16 @@ class LocationExample extends React.PureComponent {
                 <Button
                     title={ locationPermission === Location.Permission.RESULT.GRANTED ? 'good to go' : 'request permisssion' }
                     style={ { alignSelf: 'center', marginTop: 50 } }
-                    onPress={ requestLocationPermission }
+                    onPress={ this._requestPermission }
                 />
+                {
+                    isLoading &&
+                    <ActivityIndicator
+                        style={ StyleSheet.absoluteFill }
+                        animating={ true }
+                        size={ 'large' }
+                    />
+                }
             </View>
         )
     }
