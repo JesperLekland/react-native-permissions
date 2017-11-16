@@ -22,7 +22,7 @@ class LocationExample extends React.PureComponent {
                     { test }
                 </Text>
                 <Button
-                    title={ locationPermission === Location.Permission.RESULT.GRANTED ? 'continue' : 'request permisssion' }
+                    title={ locationPermission === Location.Permission.RESULT.GRANTED ? 'good to go' : 'request permisssion' }
                     style={ { alignSelf: 'center', marginTop: 50 } }
                     onPress={ requestLocationPermission }
                 />
