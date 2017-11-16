@@ -1,0 +1,44 @@
+{
+	"name": "react-native-permissions",
+	"version": "0.0.1",
+	"private": true,
+	"main": "src/index.js",
+	"scripts": {
+		"start": "node node_modules/react-native/local-cli/cli.js start",
+		"test": "jest"
+	},
+	"author": {
+		"name": "Jesper Lekland",
+		"email": "jesper.lekland@push2prod.se"
+	},
+	"homepage": "https://github.com/JesperLekland/react-native-permissions",
+	"bugs": {
+		"url": "https://github.com/JesperLekland/react-native-permissions/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/JesperLekland/react-native-svg-charts.git"
+	},
+	"license": "MIT",
+	"keywords": [
+		"react-native",
+		"permissions",
+		"react",
+		"javascript",
+		"location",
+		"notification"
+	],
+	"dependencies": {
+		"react": "16.0.0",
+		"react-native": "0.50.3"
+	},
+	"devDependencies": {
+		"babel-jest": "21.2.0",
+		"babel-preset-react-native": "4.0.0",
+		"jest": "21.2.1",
+		"react-test-renderer": "16.0.0"
+	},
+	"jest": {
+		"preset": "react-native"
+	}
+}
