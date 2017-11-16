@@ -1,7 +1,9 @@
 import React from 'react'
 import { AppState } from 'react-native'
-import { Permissions } from '../../common/location'
+import Permissions from '../permission'
 import hoistNonReactStatic from 'hoist-non-react-statics'
+import { getDisplayName } from '../../util'
+import RESULT from '../../util/results'
 
 const LocationHoc = (WrappedComponent) => {
     /**
@@ -11,7 +13,7 @@ const LocationHoc = (WrappedComponent) => {
     class WithLocationPermission extends React.PureComponent {
 
         state = {
-            permission: Permissions.RESULTS.UNDEFINED,
+            permission: RESULT.UNDEFINED,
         }
 
         async componentDidMount() {

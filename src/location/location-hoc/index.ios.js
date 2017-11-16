@@ -1,8 +1,9 @@
 import React from 'react'
 import { AppState } from 'react-native'
-import { Permissions } from '../../common/location'
+import Permissions from '../permission'
 import hoistNonReactStatic from 'hoist-non-react-statics'
 import { getDisplayName } from '../../util'
+import RESULT from '../../util/results'
 
 const LocationHoc = (WrappedComponent) => {
 
@@ -15,7 +16,7 @@ const LocationHoc = (WrappedComponent) => {
         resolveOngoingRequest
 
         state = {
-            permission: Permissions.RESULTS.UNDEFINED,
+            permission: RESULT.UNDEFINED,
         }
 
         async componentDidMount() {
@@ -29,7 +30,7 @@ const LocationHoc = (WrappedComponent) => {
                 const permission = await Permissions.check()
                 this.setState({ permission })
 
-                if (permission === Permissions.RESULTS.GRANTED) {
+                if (permission === RESULT.GRANTED) {
                     this.resolveOngoingRequest && this.resolveOngoingRequest(permission)
                 }
 
@@ -58,9 +59,9 @@ const LocationHoc = (WrappedComponent) => {
             return new Promise((resolve) => {
                 this.resolveOngoingRequest = resolve
 
-                if (permission === Permissions.RESULTS.UNDEFINED) {
+                if (permission === RESULT.UNDEFINED) {
                     Permissions.request()
-                } else if (permission === Permissions.RESULTS.DENIED) {
+                } else if (permission === RESULT.DENIED) {
                     Permissions.openSettings()
                 }
             })

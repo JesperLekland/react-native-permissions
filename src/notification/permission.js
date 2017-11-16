@@ -1,26 +1,21 @@
 import { Linking, Platform, PushNotificationIOS } from 'react-native'
-import AsyncStorage, { ASYNC_STORAGE_KEYS } from '../AsyncStorage'
+import AsyncStorage, { ASYNC_STORAGE_KEYS } from '../util/async-storage'
+import RESULT from '../util/results'
 
 const mapPermissionObjectToResult = (permission, haveAsked) => {
   if (Object.values(permission).every(value => value === 1)) {
-    return Permissions.RESULTS.GRANTED
+    return RESULT.GRANTED
   } else if (haveAsked) {
-    return Permissions.RESULTS.DENIED
+    return RESULT.DENIED
   }
-  return Permissions.RESULTS.UNDEFINED
+  return RESULT.UNDEFINED
 }
 
 export const Permissions = {
 
-  RESULTS: {
-    GRANTED: 'granted',
-    DENIED: 'denied',
-    UNDEFINED: 'undefined',
-  },
-
   async check() {
     if (Platform.OS === 'android') {
-      return Permissions.RESULTS.GRANTED
+      return RESULT.GRANTED
     } else {
       const haveAsked  = await AsyncStorage.getItem(
         ASYNC_STORAGE_KEYS.HAVE_ASKED_FOR_NOTIFICATION_PERMISSION,
@@ -35,7 +30,7 @@ export const Permissions = {
   async request() {
     const _permission = await this.check()
 
-    if (_permission === Permissions.RESULTS.DENIED) {
+    if (_permission === RESULT.DENIED) {
       return this.openSettings()
     }
 
